@@ -70,6 +70,22 @@ class QuickSort<E extends Comparable<E>> {
       return high;
    }
 
+   public static <E extends Comparable<E>> E quickSelect(E[] array, int k) {
+      return quickSelect(array, k, 0, array.length - 1);
+   }
+
+   public static <E extends Comparable<E>> E quickSelect(E[] array, int k, int i, int j) {
+      if (i >= j) {
+         return array[i];
+      }
+      int lastInLow = partition_basic(array, i, j);
+      if (k <= lastInLow) {
+         return quickSelect(array, k, i, lastInLow);
+      } else {
+         return quickSelect(array, k, lastInLow + 1, j);
+      }
+   }
+
    /*
     * Quicksort in non-parallel programming
     */
